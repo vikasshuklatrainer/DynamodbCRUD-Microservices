@@ -50,7 +50,8 @@ Lets create 4 lamda functions, we will use above created IAM role.
 you can use the code from the repo.
 
 
-To Enable the communication from this static page to our lambda functions, we need to change the configuration in every lambda function.
+## To Enable the communication
+from this static page to our lambda functions, we need to change the configuration in every lambda function.
 
 ![Edit Configuration](./images/edit-configuration.png)
 
