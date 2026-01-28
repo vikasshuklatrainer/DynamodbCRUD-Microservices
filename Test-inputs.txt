@@ -44,3 +44,9 @@ or
   "age": 22,
   "course": "DevxcxOps"
 }
+
+
+
+get all students data
+
+https://jg6jzmkj4a3lta53hnnsmtod7q0gequd.lambda-url.us-east-1.on.aws/

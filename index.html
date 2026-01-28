@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+
+        h2 {
+            background: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            width: 400px;
+        }
+
+        input, button {
+            width: 95%;
+            padding: 8px;
+            margin-top: 8px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Student Management (Lambda + DynamoDB)</h1>
+
+<table>
+<tr>
+	<td><div class="box">
+  <h2>Get All Students</h2>
+  <button onclick="getAll()">Load Students</button>
+  <pre id="allResult"></pre>
+</div></td>
+	<td><!-- GET ALL STUDENTS (TABLE VIEW) -->
+<div class="box">
+    <h2>All Students</h2>
+    <button onclick="loadAllStudents()">Load Students</button>
+
+    <table border="1" width="100%" style="margin-top:10px; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+        </tbody>
+    </table>
+</div></td>
+</tr>
+</table>
+
+
+
+
+
+
+
+<table>
+<tr>
+	<td><!-- INSERT -->
+<div class="box">
+    <h2>Insert Student</h2>
+    <input id="i_id" placeholder="Student ID">
+    <input id="i_name" placeholder="Name">
+    <input id="i_age" placeholder="Age">
+    <input id="i_course" placeholder="Course">
+    <button onclick="insertStudent()">Insert</button>
+    <div class="result" id="insertResult"></div>
+</div></td>
+	<td><!-- GET -->
+<div class="box">
+    <h2>Get Student</h2>
+    <input id="g_id" placeholder="Student ID">
+    <button onclick="getStudent()">Get</button>
+    <div class="result" id="getResult"></div>
+</div></td>
+<td><td><!-- UPDATE -->
+<div class="box">
+    <h2>Update Student</h2>
+    <input id="u_id" placeholder="Student ID">
+    <input id="u_name" placeholder="New Name">
+    <input id="u_age" placeholder="New Age">
+    <input id="u_course" placeholder="New Course">
+    <button onclick="updateStudent()">Update</button>
+    <div class="result" id="updateResult"></div>
+</div></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<script>
+const INSERT_URL = "https://wpqqge3nyqrjhuycg3qg7o2rgq0vtvqx.lambda-url.us-east-1.on.aws/";
+const GET_URL = "https://dh2mhbc6newdaqgazh34573yoi0dyzam.lambda-url.us-east-1.on.aws/";
+const UPDATE_URL = "https://zraohqi2lfqavw5edhp3gf6fpq0nmvmx.lambda-url.us-east-1.on.aws/";
+const GETALL_URL = "https://jg6jzmkj4a3lta53hnnsmtod7q0gequd.lambda-url.us-east-1.on.aws/";
+
+// INSERT
+function insertStudent() {
+    fetch(INSERT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            studentId: i_id.value,
+            name: i_name.value,
+            age: Number(i_age.value),
+            course: i_course.value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        insertResult.innerText = data.message;
+    });
+}
+
+// GET
+function getStudent() {
+    fetch(GET_URL + "?studentId=" + g_id.value)
+    .then(res => res.json())
+    .then(data => {
+        getResult.innerText = JSON.stringify(data, null, 2);
+    });
+}
+
+// UPDATE
+function updateStudent() {
+    fetch(UPDATE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            studentId: u_id.value,
+            name: u_name.value,
+            age: Number(u_age.value),
+            course: u_course.value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        updateResult.innerText = data.message;
+    });
+}
+
+function getAll(){
+   fetch(GETALL_URL)
+   .then(res => res.json())
+   .then(data => {
+      allResult.innerText = JSON.stringify(data,null,2);
+   });
+}
+
+
+
+function loadAllStudents() {
+    fetch(GETALL_URL)
+        .then(res => res.json())
+        .then(data => {
+
+            let rows = "";
+
+            data.forEach(student => {
+                rows += `
+                    <tr>
+                        <td>${student.studentId}</td>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                        <td>${student.course}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("studentsTableBody").innerHTML = rows;
+        });
+}
+</script>
+
+</body>
+</html>
