@@ -1,0 +1,46 @@
+Create  a student record
+
+{
+  "studentId": "1011",
+  "name": "Abhi",
+  "age": 21,
+  "course": "Cloud"
+}
+
+
+
+
+Get the student record
+
+GET https://<api-id>.execute-api.<region>.amazonaws.com/students?studentId=101
+
+
+
+{
+  "queryStringParameters": {
+    "studentId": "101"
+  }
+}
+
+
+
+
+
+
+Test the update student function using below input
+
+
+
+{
+  "body": "{\"studentId\":\"101\",\"name\":\"Abhishek\",\"age\":22,\"course\":\"DevOps\"}"
+}
+
+
+or 
+
+{
+  "studentId": "101",
+  "name": "Abhishek",
+  "age": 22,
+  "course": "DevxcxOps"
+}
