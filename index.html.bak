@@ -105,9 +105,7 @@
     <button onclick="getStudent()">Get</button>
     <div class="result" id="getResult"></div>
 </div></td>
-</tr>
-<tr>
-	<td><!-- UPDATE -->
+<td><td><!-- UPDATE -->
 <div class="box">
     <h2>Update Student</h2>
     <input id="u_id" placeholder="Student ID">
@@ -116,10 +114,9 @@
     <input id="u_course" placeholder="New Course">
     <button onclick="updateStudent()">Update</button>
     <div class="result" id="updateResult"></div>
-</div>
-</td>
-	<td></td>
+</div></td>
 </tr>
+
 </table>
 
 
@@ -132,7 +129,7 @@
 const INSERT_URL = "https://wpqqge3nyqrjhuycg3qg7o2rgq0vtvqx.lambda-url.us-east-1.on.aws/";
 const GET_URL = "https://dh2mhbc6newdaqgazh34573yoi0dyzam.lambda-url.us-east-1.on.aws/";
 const UPDATE_URL = "https://zraohqi2lfqavw5edhp3gf6fpq0nmvmx.lambda-url.us-east-1.on.aws/";
-const GETALL_URL = "https://jg6jzmkj4a3lta53hnnsmtod7q0gequd.lambda-url.us-east-1.on.aws/";
+const GETALL_URL = "https://mdv1xjlg2h.execute-api.us-east-1.amazonaws.com/a2/listofstudents";
 
 // INSERT
 function insertStudent() {
