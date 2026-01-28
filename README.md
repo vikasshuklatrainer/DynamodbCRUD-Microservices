@@ -38,6 +38,18 @@ Leave defaults → Create table
 
 Create the role. This role will be assigned during creation of lambda functions.
 
+## Create Lambda Functions as micro services
+
+Lets create 4 lamda functions, we will use above created IAM role.
+![4 Lambda Functions](./images/4-lambda-functions.png)
+
+![Lambda Creations](./images/lambda-creations.png)
+
+![lambda](./images/lambda.png)
+
+you can use the code from the repo.
+
+
 To Enable the communication from this static page to our lambda functions, we need to change the configuration in every lambda function.
 
 ![Edit Configuration](./images/edit-configuration.png)
