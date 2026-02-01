@@ -61,3 +61,10 @@ from this static page to our lambda functions, we need to change the configurati
 After changing , it should look like this
 
 ![After cors enabling](./images/After-cors-enabling.png)
+
+Finally our application looks like 
+
+![What we are building](./images/What-we-are-building.png)
+
+
+# Lets Expose these lambda by AWS API Gateway
